@@ -16,7 +16,7 @@ export const Header = styled.header`
 
   > nav {
     display: flex;
-    margin: 0 auto;
+    margin-left: 10px;
   }
 `;
 
