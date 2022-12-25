@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { ImFilm } from 'react-icons/im';
 
 export const Container = styled.div`
   max-width: 1200px;
@@ -9,7 +10,7 @@ export const Container = styled.div`
 export const Header = styled.header`
   display: flex;
   align-items: center;
-  padding: 15px 0;
+  padding: 15px 20px;
   margin-bottom: 16px;
   box-shadow: rgba(0, 0, 0, 0.45) 10px 20px 20px -20px;
 
@@ -19,9 +20,9 @@ export const Header = styled.header`
   }
 `;
 
-export const Logo = styled.p`
-  font-weight: 700;
-  margin: 0;
+
+export const LogoIcon = styled(ImFilm)`
+  fill: orangered;
 `;
 
 export const Link = styled(NavLink)`

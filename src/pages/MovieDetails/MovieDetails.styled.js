@@ -6,12 +6,13 @@ export const Section = styled.section`
 `;
 
 export const LinkStyled = styled(Link)`
-  display: block;
-  text-align: center;
-  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
   background-color: #93dbb2;
   margin-bottom: 20px;
-  max-width: 100px;
+  max-width: 110px;
   border-radius: 4px;
   font-weight: bold;
   color: #000;

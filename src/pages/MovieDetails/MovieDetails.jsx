@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import { MdArrowBackIosNew } from 'react-icons/md';
+import { Loader } from 'components/Loader/Loader';
 import {
   getFilmById,
   getPosterFilm,
@@ -18,23 +20,27 @@ import {
   FilmInfoOverview,
   AdditionalInfoWrapper,
   AdditionalInfo,
-    AdditionalInfoTitle,
+  AdditionalInfoTitle,
   AdditionalItem,
   Section,
 } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
+    setIsLoading(true);
     const getMovieInfo = async () => {
       try {
         const movieInfo = await getFilmById(movieId);
         setMovie(movieInfo);
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         console.log('Error in MovieDetails', error);
       }
     };
@@ -44,14 +50,17 @@ export const MovieDetails = () => {
   if (movie.lenght === 0) {
     return;
   }
-    
-    const { title, poster_path, release_date, overview, genres, vote_average } =
-        movie;
+
+  const { title, poster_path, release_date, overview, genres, vote_average } =
+    movie;
 
   return (
     <main>
-      <Section>
-        <LinkStyled to={backLinkHref}>Go back</LinkStyled>
+      {!isLoading && <Section>
+        <LinkStyled to={backLinkHref}>
+          <MdArrowBackIosNew size={24} />
+          Go back
+        </LinkStyled>
         <FilmCard>
           <FilmPoster src={getPosterFilm(poster_path)} alt={title} />
           <FilmInfoWrapper>
@@ -68,7 +77,6 @@ export const MovieDetails = () => {
             </FilmInfoTitle>
           </FilmInfoWrapper>
         </FilmCard>
-
         <AdditionalInfoWrapper>
           <AdditionalInfoTitle>Additional infomation</AdditionalInfoTitle>
           <AdditionalInfo>
@@ -80,8 +88,13 @@ export const MovieDetails = () => {
             </li>
           </AdditionalInfo>
         </AdditionalInfoWrapper>
-        <Outlet />
-      </Section>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </Section>}
+      {isLoading && <Loader />}
     </main>
   );
 };
+
+export default MovieDetails;

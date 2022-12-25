@@ -3,9 +3,11 @@ import { MoviesList } from 'components/MoviesList/MoviesList';
 import { useSearchParams } from 'react-router-dom';
 import { SearchBox } from '../components/SearchBox/SearchBox';
 import { getFilmByKeyword } from 'services/fetchApi';
+import { Loader } from 'components/Loader/Loader';
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const movie = searchParams.get('query') ?? '';
 
@@ -18,12 +20,15 @@ export const Movies = () => {
     if (!movie) {
       return;
     }
+    setisLoading(true);
     const getMovie = async () => {
       try {
         const findedMovie = await getFilmByKeyword(movie);
         console.log('In Movies', findedMovie);
         setMovies(findedMovie);
+        setisLoading(false);
       } catch (error) {
+        setisLoading(false);
         console.log('Error in Movies', error);
       }
     };
@@ -34,8 +39,11 @@ export const Movies = () => {
     <main>
       <section>
         <SearchBox onUpdateQuery={updateQueryString} />
-        {movies && <MoviesList movies={movies} /> }
+        {movies && !isLoading && <MoviesList movies={movies} />}
+        {isLoading && <Loader />}
       </section>
     </main>
   );
 };
+
+export default Movies;

@@ -1,4 +1,10 @@
 import { useState } from "react";
+import {
+  Form,
+  Input,
+  SearchButton,
+  IconSearchStyled,
+} from './SearchBox.styled';
 
 export const SearchBox = ({ onUpdateQuery }) => {
     const [query, setQuery] = useState('');
@@ -11,9 +17,17 @@ export const SearchBox = ({ onUpdateQuery }) => {
         onUpdateQuery(query);
   };
   return (
-    <form onSubmit={onSubmit}>
-      <input type="text" name="query" value={query} onChange={onChange} />
-      <button type="submit">Search</button>
-    </form>
+    <Form onSubmit={onSubmit}>
+      <Input
+        type="text"
+        name="query"
+        value={query}
+        onChange={onChange}
+        placeholder="Search movie..."
+      />
+      <SearchButton type="submit">
+        <IconSearchStyled size="24" />
+      </SearchButton>
+    </Form>
   );
 };
