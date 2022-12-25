@@ -39,8 +39,9 @@ const Movies = () => {
     <main>
       <section>
         <SearchBox onUpdateQuery={updateQueryString} />
-        {movies && !isLoading && <MoviesList movies={movies} />}
+        {movies.length > 0 && !isLoading && <MoviesList movies={movies} />}
         {isLoading && <Loader />}
+        {!isLoading && movie && movies.length === 0 && <div>Sorry, we couldn't find anything :(</div>}
       </section>
     </main>
   );

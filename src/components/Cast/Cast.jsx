@@ -30,16 +30,19 @@ const Cast = () => {
 
     return (
       <>
-        {!isLoading && <CastGallery>
-          {cast.map(({ cast_id, name, character, profile_path }) => (
-            <CastItem key={cast_id}>
-              <CastImg src={getPosterFilm(profile_path)} alt={name} />
-              <CastName>{name}</CastName>
-              <p>Character: {character}</p>
-            </CastItem>
-          ))}
-        </CastGallery>}
+        {!isLoading && cast.length > 0 && (
+          <CastGallery>
+            {cast.map(({ cast_id, name, character, profile_path }) => (
+              <CastItem key={cast_id}>
+                <CastImg src={getPosterFilm(profile_path)} alt={name} />
+                <CastName>{name}</CastName>
+                <p>Character: {character}</p>
+              </CastItem>
+            ))}
+          </CastGallery>
+        )}
         {isLoading && <Loader />}
+        {cast.length === 0 && !isLoading && <div>We didn't find any actors :( </div>}
       </>
     );
 };

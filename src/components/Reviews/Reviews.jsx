@@ -35,15 +35,20 @@ const Reviews = () => {
 
   return (
     <>
-      {!isLoading && <ReviewsList>
-        {reviews.map(({ id, author, content }) => (
-          <ReviewsItem key={id}>
-            <ReviewsAuthor>Author: {author}</ReviewsAuthor>
-            <ReviewsContent>{content}</ReviewsContent>
-          </ReviewsItem>
-        ))}
-      </ReviewsList>}
+      {!isLoading && reviews.length > 0 && (
+        <ReviewsList>
+          {reviews.map(({ id, author, content }) => (
+            <ReviewsItem key={id}>
+              <ReviewsAuthor>Author: {author}</ReviewsAuthor>
+              <ReviewsContent>{content}</ReviewsContent>
+            </ReviewsItem>
+          ))}
+        </ReviewsList>
+      )}
       {isLoading && <Loader />}
+      {reviews.length === 0 && !isLoading && (
+        <div>We didn't find any reviews :( </div>
+      )}
     </>
   );
 };

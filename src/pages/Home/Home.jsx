@@ -33,10 +33,14 @@ const Home = () => {
 
   return (
     <main>
-      {!isLoading && <section>
-        <HomeTitle>Trending a day</HomeTitle>
-        {movies.length > 0 && !isLoading && <MoviesList movies={movies} />}
-      </section>}
+      <section>
+        {!isLoading && movies.length > 0 && (
+          <>
+            <HomeTitle>Trending a day</HomeTitle>
+            {movies.length > 0 && !isLoading && <MoviesList movies={movies} />}
+          </>
+        )}
+      </section>
       {isLoading && <Loader />}
     </main>
   );
