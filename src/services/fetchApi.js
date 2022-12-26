@@ -8,7 +8,6 @@ export const getFilmById = async movieId => {
   try {
     const response = await axios.get(`/movie/${movieId}?api_key=${API_KEY}`);
     const movieInfo = response.data;
-    console.log(response.data);
     return movieInfo;
   } catch (error) {
     console.log('Error in getFilmById', error);
@@ -21,7 +20,6 @@ export const getFilmByKeyword = async movie => {
       `/search/movie?api_key=${API_KEY}&query=${movie}`
     );
     const searchMovie = response.data.results;
-    console.log('In getFilmByKeyword', response.data.results);
     return searchMovie;
   } catch (error) {
     console.log('Error in getFilmByKeyword', error);

@@ -18,7 +18,6 @@ const Home = () => {
         const response = await axios.get(
           `/trending/movie/day?api_key=${API_KEY}`
         );
-        console.log(response.data.results);
         const moviesTrend = response.data.results;
         setMovies(moviesTrend);
         setisLoading(false);

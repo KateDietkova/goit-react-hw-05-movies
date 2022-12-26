@@ -47,10 +47,10 @@ FilmCardDetail.propTypes = {
     overview: PropTypes.string,
     genres: PropTypes.arrayOf(
       PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          name: PropTypes.string.isRequired,
+          id: PropTypes.number,
+          name: PropTypes.string,
       })
     ),
-    vote_average: PropTypes.number.isRequired,
+    vote_average: PropTypes.number,
   }),
 };

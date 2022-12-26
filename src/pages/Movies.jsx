@@ -24,7 +24,6 @@ const Movies = () => {
     const getMovie = async () => {
       try {
         const findedMovie = await getFilmByKeyword(movie);
-        console.log('In Movies', findedMovie);
         setMovies(findedMovie);
         setisLoading(false);
       } catch (error) {
