@@ -15,7 +15,7 @@ export const SearchBox = ({ onUpdateQuery }) => {
     }
     const onSubmit = e => {
         e.preventDefault();
-        onUpdateQuery(query);
+        onUpdateQuery(query.trim());
   };
   return (
     <Form onSubmit={onSubmit}>
