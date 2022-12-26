@@ -2,6 +2,7 @@ import {
   getPosterFilm,
   getGenres,
   getDate,
+  getPecentageValue,
 } from 'services/fetchApi';
 
 import {
@@ -27,7 +28,10 @@ export const FilmCardDetail = ({ movie }) => {
           {title} ({getDate(release_date)})
         </FilmTitle>
         <FilmInfoTitle>
-          User Score: <FilmInfoDesc>{vote_average}</FilmInfoDesc>
+          User Score:{' '}
+          <FilmInfoDesc>
+            {vote_average && getPecentageValue(vote_average)}
+          </FilmInfoDesc>
         </FilmInfoTitle>
         <FilmInfoTitle>Overview: </FilmInfoTitle>
         <FilmInfoOverview>{overview}</FilmInfoOverview>
@@ -47,8 +51,8 @@ FilmCardDetail.propTypes = {
     overview: PropTypes.string,
     genres: PropTypes.arrayOf(
       PropTypes.shape({
-          id: PropTypes.number,
-          name: PropTypes.string,
+        id: PropTypes.number,
+        name: PropTypes.string,
       })
     ),
     vote_average: PropTypes.number,

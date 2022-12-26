@@ -75,3 +75,12 @@ export function sliceVoteAverage(voteAverage) {
     const sliceVoteAverage = parseFloat(voteAverage.toFixed(1));
     return sliceVoteAverage;
 }
+
+export function getPecentageValue(voteAverage) {
+    if (!voteAverage) {
+        return;
+    }
+    const sliceVote = sliceVoteAverage(voteAverage);
+    const percent = sliceVote / 10 * 100;
+    return `${percent}%`;
+}
