@@ -81,6 +81,7 @@ export function getPecentageValue(voteAverage) {
         return;
     }
     const sliceVote = sliceVoteAverage(voteAverage);
-    const percent = sliceVote / 10 * 100;
+    const percentValue = sliceVote / 10 * 100;
+    const percent = parseFloat(percentValue.toFixed(1));
     return `${percent}%`;
 }
