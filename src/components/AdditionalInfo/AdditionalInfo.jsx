@@ -11,7 +11,9 @@ export const AdditionalInfo = () => {
       <AdditionalInfoTitle>Additional infomation</AdditionalInfoTitle>
       <AdditionalInfoList>
         <li>
-          <AdditionalItem to="cast">Cast</AdditionalItem>
+          <AdditionalItem to="cast">
+            Cast
+          </AdditionalItem>
         </li>
         <li>
           <AdditionalItem to="reviews">Reviews</AdditionalItem>
