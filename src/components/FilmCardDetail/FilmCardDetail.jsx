@@ -14,6 +14,8 @@ import {
   FilmInfoOverview,
 } from './FilmCardDetail.styled';
 
+import PropTypes from 'prop-types';
+
 export const FilmCardDetail = ({ movie }) => {
   const { title, poster_path, release_date, overview, genres, vote_average } =
     movie;
@@ -35,4 +37,20 @@ export const FilmCardDetail = ({ movie }) => {
       </FilmInfoWrapper>
     </FilmCard>
   );
+};
+
+FilmCardDetail.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    poster_path: PropTypes.string,
+    release_date: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+      })
+    ),
+    vote_average: PropTypes.number.isRequired,
+  }),
 };

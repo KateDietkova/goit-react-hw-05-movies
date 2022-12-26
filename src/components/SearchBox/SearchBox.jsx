@@ -5,6 +5,7 @@ import {
   SearchButton,
   IconSearchStyled,
 } from './SearchBox.styled';
+import PropTypes from 'prop-types';
 
 export const SearchBox = ({ onUpdateQuery }) => {
     const [query, setQuery] = useState('');
@@ -30,4 +31,8 @@ export const SearchBox = ({ onUpdateQuery }) => {
       </SearchButton>
     </Form>
   );
+};
+
+SearchBox.propTypes = {
+  onUpdateQuery: PropTypes.func.isRequired,
 };
