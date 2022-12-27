@@ -37,7 +37,7 @@ const Movies = () => {
   return (
     <main>
       <section>
-        <SearchBox onUpdateQuery={updateQueryString} />
+        <SearchBox onUpdateQuery={updateQueryString} value={movie} />
         {movies.length > 0 && !isLoading && <MoviesList movies={movies} />}
         {isLoading && <Loader />}
         {!isLoading && movie && movies.length === 0 && <div>Sorry, we couldn't find anything :(</div>}

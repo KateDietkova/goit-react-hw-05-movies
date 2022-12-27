@@ -43,7 +43,7 @@ const MovieDetails = () => {
             Go back
           </LinkStyled>
           <FilmCardDetail movie={movie} />
-          <AdditionalInfo />
+          <AdditionalInfo backLinkHref={backLinkHref} />
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>

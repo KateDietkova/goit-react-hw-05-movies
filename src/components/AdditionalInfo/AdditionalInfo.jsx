@@ -5,20 +5,31 @@ import {
   AdditionalItem,
 } from './AdditionalInfo.styled';
 
-export const AdditionalInfo = () => {
+import PropTypes from 'prop-types';
+
+
+export const AdditionalInfo = ({ backLinkHref }) => {
   return (
     <AdditionalInfoWrapper>
       <AdditionalInfoTitle>Additional infomation</AdditionalInfoTitle>
       <AdditionalInfoList>
         <li>
-          <AdditionalItem to="cast">
+          <AdditionalItem to="cast" state={{ from: backLinkHref }}>
             Cast
           </AdditionalItem>
         </li>
         <li>
-          <AdditionalItem to="reviews">Reviews</AdditionalItem>
+          <AdditionalItem to="reviews" state={{ from: backLinkHref }}>
+            Reviews
+          </AdditionalItem>
         </li>
       </AdditionalInfoList>
     </AdditionalInfoWrapper>
   );
 };
+
+AdditionalInfo.propTypes = {
+    backLinkHref: PropTypes.shape({
+        state: PropTypes.shape({}),
+    }),
+}
