@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 
 export const SearchBox = ({ onUpdateQuery, value }) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(value ? value : '');
 
   const onChange = e => {
     setQuery(e.target.value);
@@ -22,7 +22,7 @@ export const SearchBox = ({ onUpdateQuery, value }) => {
       <Input
         type="text"
         name="query"
-        value={value}
+        value={query}
         onChange={onChange}
         placeholder="Search movie..."
       />
